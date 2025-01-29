@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Client } from '@stomp/stompjs';
-import SockJS from 'sockjs-client';
 import { WS_URL, TOPIC_PUBLIC, DESTINATIONS } from '../utils/constants';
+import SockJS from 'sockjs-client';
 
 export const useChatClient = () => {
   const [messages, setMessages] = useState([]);
@@ -33,7 +33,9 @@ export const useChatClient = () => {
     client.activate();
     stompClient.current = client;
 
-    return () => client.deactivate();
+    return () => {
+      client.deactivate();
+    };
   }, []);
 
   const joinChat = (event) => {
@@ -62,9 +64,19 @@ export const useChatClient = () => {
         destination: DESTINATIONS.SEND_MESSAGE,
         body: JSON.stringify({ sender: username, type: 'LEAVE', content: '' }),
       });
+
+      // if (stompClient.current) {
+      //   stompClient.current.deactivate();
+      //   stompClient.current = null;
+      // }
+
       setIsUserJoined(false);
       setUsername('');
       setMessages([]);
+
+      // setTimeout(() => {
+      //   window.location.reload();
+      // }, 1000);
     }
   };
 

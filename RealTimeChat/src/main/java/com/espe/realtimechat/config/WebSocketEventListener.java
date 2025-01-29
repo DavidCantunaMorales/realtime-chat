@@ -34,6 +34,11 @@ public class WebSocketEventListener {
 
             // Enviar el mensaje a la sala pública
             messagingTemplate.convertAndSend("/topic/public", chatMessage);
+
+            // Eliminar la sesion del usuario para evitar referencias anteriores
+            headerAccessor.getSessionAttributes().remove("username");
+            logger.info("Sesiones activas después de desconectar: {}", headerAccessor.getSessionAttributes());
+
         }
     }
 }

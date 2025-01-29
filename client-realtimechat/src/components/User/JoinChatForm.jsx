@@ -44,23 +44,6 @@ export const JoinChatForm = ({ username, setUsername, joinChat }) => (
             onChange={(e) => setUsername(e.target.value)}
             fullWidth
             helperText='Escribe tu nombre para unirte al chat'
-            // slotProps={{
-            //   inputLabel: {
-            //     style: { color: '#e0e0e0' }, // Color del label más suave
-            //   },
-            //   input: {
-            //     style: { color: 'white' }, // Color del texto de entrada
-            //   },
-            // }}
-            // sx={{
-            //   backgroundColor: '#1c1c29', // Fondo oscuro pero suave para los inputs
-            //   '& .MuiOutlinedInput-root': {
-            //     borderColor: '#555555', // Borde del campo de texto
-            //   },
-            //   '&:hover .MuiOutlinedInput-root': {
-            //     borderColor: '#e040fb', // Borde morado al hacer hover
-            //   },
-            // }}
           />
         </Grid2>
 

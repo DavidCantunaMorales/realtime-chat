@@ -6,16 +6,17 @@ export const ChatMessages = ({ messages }) => {
   useEffect(() => {
     // Detectar los mensajes nuevos de tipo JOIN o LEAVE y mostrar notificaciones
     const lastMessage = messages[messages.length - 1];
+    toast.dismiss();
     if (lastMessage) {
       if (lastMessage.type === 'JOIN') {
         toast.info(`${lastMessage.sender} se unió al chat`, {
           position: 'top-right',
-          autoClose: 3000,
+          autoClose: 1000,
         });
       } else if (lastMessage.type === 'LEAVE') {
         toast.error(`${lastMessage.sender} salió del chat`, {
           position: 'top-right',
-          autoClose: 3000,
+          autoClose: 1000,
         });
       }
     }
