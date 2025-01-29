@@ -30,6 +30,7 @@ function App() {
           messages={messages}
           sendMessage={sendMessage}
           leaveChat={leaveChat}
+          username={username}
         />
       )}
       <ToastContainer />

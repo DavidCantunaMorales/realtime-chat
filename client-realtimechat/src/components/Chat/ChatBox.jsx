@@ -2,7 +2,7 @@ import { Box, Button, Typography, Paper, Grid2 } from '@mui/material';
 import { ChatMessages } from './ChatMessages';
 import { ChatInput } from './ChatInput';
 
-export const ChatBox = ({ messages, sendMessage, leaveChat }) => (
+export const ChatBox = ({ messages, sendMessage, leaveChat, username }) => (
   <Box
     sx={{
       width: '100%',
@@ -58,7 +58,10 @@ export const ChatBox = ({ messages, sendMessage, leaveChat }) => (
         borderRadius: 2,
       }}
     >
-      <ChatMessages messages={messages} />
+      <ChatMessages
+        messages={messages}
+        username={username}
+      />
     </Paper>
 
     {/* Entrada para mensajes */}
