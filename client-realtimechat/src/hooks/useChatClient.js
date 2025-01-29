@@ -41,9 +41,10 @@ export const useChatClient = () => {
   const joinChat = (event) => {
     event.preventDefault();
     if (username.trim() && stompClient.current) {
+      const avatarUrl = `https://robohash.org/${username}.png`;
       stompClient.current.publish({
         destination: DESTINATIONS.ADD_USER,
-        body: JSON.stringify({ sender: username, type: 'JOIN', content: '' }),
+        body: JSON.stringify({ sender: username, type: 'JOIN', content: '', avatar: avatarUrl }),
       });
       setIsUserJoined(true);
     }

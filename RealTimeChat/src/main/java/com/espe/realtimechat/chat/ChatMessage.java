@@ -5,8 +5,10 @@ public class ChatMessage {
     private String sender;
     private String content;
     private MessageType type;
+    private String avatar;
 
-    public ChatMessage() {}
+    public ChatMessage() {
+    }
 
     public ChatMessage(String sender, String content, MessageType type) {
         this.sender = sender;
@@ -37,5 +39,9 @@ public class ChatMessage {
     public void setType(MessageType type) {
         this.type = type;
     }
+
+    public String getAvatar() { return avatar; }
+
+    public void setAvatar(String avatar) { this.avatar = avatar; }
 }
 

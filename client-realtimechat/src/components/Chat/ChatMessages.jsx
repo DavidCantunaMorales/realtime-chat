@@ -1,8 +1,18 @@
 import { Box, Typography, Avatar, Paper } from '@mui/material';
 import { toast } from 'react-toastify';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const ChatMessages = ({ messages }) => {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   useEffect(() => {
     // Detectar los mensajes nuevos de tipo JOIN o LEAVE y mostrar notificaciones
     const lastMessage = messages[messages.length - 1];
@@ -29,6 +39,8 @@ export const ChatMessages = ({ messages }) => {
         flexDirection: 'column',
         gap: 2,
         padding: 2,
+        maxHeight: '75vh',
+        overflowY: 'auto',
       }}
     >
       {messages.map((msg, index) => (
@@ -46,7 +58,7 @@ export const ChatMessages = ({ messages }) => {
               {/* Avatar del usuario */}
               <Avatar
                 alt={msg.sender}
-                src={msg.avatar || ''}
+                src={msg.avatar || `https://robohash.org/${msg.sender}.png`}
                 sx={{ width: 40, height: 40 }}
               />
 
@@ -97,6 +109,7 @@ export const ChatMessages = ({ messages }) => {
           )}
         </Box>
       ))}
+      <div ref={messagesEndRef}></div>
     </Box>
   );
 };
